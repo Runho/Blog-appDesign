@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Home — My Blog{% endblock %}
+{% block content %}
+  <div class="layout">
+    <main>
+      <div class="page-head">
+        <h1>Posts</h1>
+        <p>
+          {% if user.is_authenticated %}
+            <a class="btn" href="{% url 'blogs:post-create' %}">Create new post</a>
+          {% else %}
+            <a class="btn" href="{% url 'login' %}">Login</a>
+            <a class="btn" href="{% url 'blogs:register' %}">Register</a>
+          {% endif %}
+        </p>
+      </div>
+      <ul class="post-list">
+    {% for post in posts %}
+      <li class="post-card">
+        <h2>{{ post.title }}</h2>
+        <div class="meta">By {{ post.author }} — {{ post.date_added }}</div>
+        <p class="excerpt">{{ post.text|truncatechars:140 }}</p>
+        <div>
+          <a class="btn" href="{% url 'blogs:post-detail' post.pk %}" target="_blank" rel="noopener">Read</a>
+          {% if user.is_authenticated and post.author == user %}
+            <a class="btn secondary" href="{% url 'blogs:post-update' post.pk %}">Edit</a>
+          {% endif %}
+        </div>
+      </li>
+    {% empty %}
+      <li class="post-card">No posts yet.</li>
+    {% endfor %}
+      </ul>
+    </main>
+    <aside class="sidebar">
+      <h3>About</h3>
+      <p>Welcome to My Blog — a demo site. Use the register/login links to create posts.</p>
+      <h3>Recent</h3>
+      <ul>
+        {% for post in posts|slice:":5" %}
+          <li><a href="#">{{ post.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </aside>
+  </div>
+{% endblock %}

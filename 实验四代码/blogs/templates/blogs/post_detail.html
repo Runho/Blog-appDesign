@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }} — My Blog{% endblock %}
+{% block content %}
+  <article class="post-card">
+    <h1>{{ post.title }}</h1>
+    <div class="meta">By {{ post.author }} — {{ post.date_added }}</div>
+    <div class="content">
+      <p>{{ post.text|linebreaks }}</p>
+    </div>
+    {% if user.is_authenticated and post.author == user %}
+      <p><a class="btn secondary" href="{% url 'blogs:post-update' post.pk %}">Edit Post</a></p>
+    {% endif %}
+  </article>
+{% endblock %}

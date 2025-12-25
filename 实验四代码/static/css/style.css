@@ -1,0 +1,365 @@
+/* --- 美化后的 CSS --- */
+:root {
+  /* 调整颜色变量，使其更柔和、现代 */
+  --bg: #f8fafc; /* 更浅的背景色 */
+  --card: #ffffff; /* 卡片背景 */
+  --accent: #2563eb; /* 主色调，更明亮的蓝色 */
+  --accent-hover: #1d4ed8; /* 悬停时的主色调 */
+  --muted: #64748b; /* 辅助文字颜色 */
+  --header: #0f172a; /* 头部文字颜色 */
+  --border: #e2e8f0; /* 边框颜色 */
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06); /* 轻微阴影 */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 标准阴影 */
+  --shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.12); /* 悬停时的阴影 */
+  --text: #1e293b; /* 主要文字颜色 */
+  --text-light: #64748b; /* 次要文字颜色 */
+  --success-bg: #d1fae5; /* 成功消息背景 */
+  --success-text: #065f46; /* 成功消息文字 */
+  --error-bg: #fee2e2; /* 错误消息背景 */
+  --error-text: #b91c1c; /* 错误消息文字 */
+  --transition: all 0.3s ease; /* 统一过渡效果 */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: var(--transition);
+}
+
+.container {
+  width: 92%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+  /* 添加圆角和背景色，使其在浅色背景下更突出 */
+  background-color: var(--bg);
+  border-radius: 12px;
+}
+
+/* --- 头部优化 --- */
+.site-header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%); /* 更深、更有层次的渐变 */
+  color: #fff;
+  padding: 14px 0;
+  box-shadow: var(--shadow-light);
+  position: sticky; /* 头部固定，提升导航体验 */
+  top: 0;
+  z-index: 100;
+  transition: var(--transition);
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* 为 header-row 添加 padding 以更好地容纳内容 */
+  padding: 0 8px;
+}
+
+.site-title {
+  display: inline-block;
+  margin: 0;
+  padding: 0 8px;
+  font-size: 22px; /* 稍微增大字体 */
+  font-weight: 600;
+  letter-spacing: 0.5px; /* 增加字母间距，更美观 */
+}
+
+.site-title a {
+  color: #fff;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.site-title a:hover {
+  color: #cbd5e1; /* 悬停时颜色变浅 */
+}
+
+/* --- 导航栏优化 --- */
+.site-nav {
+  display: inline-flex;
+  gap: 16px; /* 增大导航项间距 */
+  align-items: center;
+  padding-right: 8px;
+  transition: var(--transition);
+}
+
+.site-nav a {
+  color: var(--text); /* 默认使用深色文字，白底时可见 */
+  margin-left: 0; /* 移除旧的 margin-left */
+  padding: 6px 10px; /* 添加内边距，使点击区域更大 */
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px; /* 添加圆角 */
+  transition: var(--transition);
+  position: relative;
+}
+
+.site-nav a:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1); /* 悬停时添加半透明背景 */
+}
+
+/* --- 页脚优化 --- */
+.site-footer {
+  text-align: center;
+  padding: 20px 0; /* 增加上下 padding */
+  color: var(--text-light);
+  background: transparent;
+  font-size: 0.9rem; /* 稍微减小字体 */
+  margin-top: 40px; /* 与 main 内容分离 */
+  border-top: 1px solid var(--border); /* 添加顶部边框 */
+}
+
+/* --- 消息提示优化 --- */
+ul.messages {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0; /* 增大外边距 */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* 消息之间增加间距 */
+}
+
+.message {
+  padding: 12px 16px; /* 增大内边距 */
+  margin-bottom: 0; /* 移除外边距，使用 flex gap */
+  border-radius: 8px; /* 增大圆角 */
+  font-weight: 500;
+  box-shadow: var(--shadow-light);
+  animation: fadeInUp 0.3s ease-out forwards; /* 添加淡入动画 */
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message.error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border-left: 4px solid var(--error-text); /* 左侧添加彩色条 */
+}
+
+.message.success {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-left: 4px solid var(--success-text); /* 左侧添加彩色条 */
+}
+
+/* --- 按钮优化 --- */
+.btn {
+  display: inline-block;
+  padding: 10px 16px; /* 增大按钮内边距 */
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px; /* 增大圆角 */
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-light);
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px); /* 悬停时轻微上移 */
+  box-shadow: var(--shadow-hover);
+}
+
+.btn.secondary {
+  background: #e0f2fe;
+  color: var(--accent);
+}
+
+.btn.secondary:hover {
+  background: #bae6fd;
+  color: var(--accent-hover);
+}
+
+/* --- 博客列表优化 --- */
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 稍微增大最小宽度 */
+  gap: 24px; /* 增大卡片间距 */
+}
+
+.post-card {
+  background: var(--card);
+  padding: 20px; /* 增大内边距 */
+  border-radius: 12px; /* 增大圆角 */
+  box-shadow: var(--shadow); /* 使用标准阴影 */
+  border: 1px solid var(--border); /* 添加边框 */
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 使卡片高度一致 */
+}
+
+.post-card:hover {
+  box-shadow: var(--shadow-hover); /* 悬停时使用更深的阴影 */
+  transform: translateY(-4px); /* 悬停时轻微上移 */
+  border-color: rgba(37, 99, 235, 0.2); /* 悬停时边框颜色变化 */
+}
+
+.post-card h2 {
+  margin: 0 0 12px 0; /* 增大下方间距 */
+  font-size: 1.15rem; /* 增大标题字体 */
+  font-weight: 600;
+  color: var(--header);
+  line-height: 1.4;
+}
+
+.post-card .meta {
+  color: var(--text-light);
+  font-size: 0.85rem; /* 稍微减小字体 */
+  margin-bottom: 12px; /* 增大下方间距 */
+  padding-bottom: 8px; /* 底部分隔 */
+  border-bottom: 1px solid var(--border);
+}
+
+.post-card p.excerpt {
+  color: var(--text);
+  margin: 0 0 14px 0; /* 增大下方间距 */
+  flex-grow: 1; /* 使摘要部分填充剩余空间 */
+}
+
+/* --- 响应式菜单优化 --- */
+.nav-toggle {
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font-size: 24px; /* 稍微增大汉堡图标 */
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: none; /* 默认隐藏 */
+}
+
+.nav-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#nav-menu {
+  display: flex;
+  gap: 16px; /* 与桌面端保持一致 */
+  align-items: center;
+}
+
+@media (max-width: 800px) {
+  .site-title {
+    /* 在小屏幕上居中标题 */
+    display: block;
+    margin: 0 auto 10px;
+    text-align: center;
+  }
+
+  .header-row {
+    /* 小屏幕时，调整 header-row 布局 */
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 8px;
+  }
+
+  #nav-menu {
+    display: none; /* 隐藏默认导航 */
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 0;
+    position: absolute;
+    top: 100%; /* 定位在 header 下方 */
+    right: 8px;
+    width: calc(100% - 16px); /* 宽度略小于 container */
+    background: linear-gradient(180deg, rgba(30, 58, 138, 0.98), rgba(15, 23, 42, 0.98)); /* 深色背景 */
+    border-radius: 8px;
+    box-shadow: var(--shadow-hover);
+    z-index: 99;
+  }
+
+  #nav-menu.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block; /* 在小屏幕上显示汉堡按钮 */
+    margin-left: auto; /* 将按钮推到右侧 */
+  }
+
+  /* 为移动端菜单项添加更多样式 */
+  .site-nav a {
+    padding: 12px 16px;
+    width: 100%;
+    border-radius: 0; /* 移除圆角，使整个按钮区域可点击 */
+    color: #fff; /* 在移动端下拉菜单上使用白色文字以保证可读性 */
+  }
+
+  .site-nav a:first-child {
+    border-radius: 8px 8px 0 0; /* 为第一个元素添加顶部圆角 */
+  }
+
+  .site-nav a:last-child {
+    border-radius: 0 0 8px 8px; /* 为最后一个元素添加底部圆角 */
+  }
+}
+
+/* --- 布局优化 (main + sidebar) --- */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 32px; /* 增大间隙 */
+  align-items: start;
+  margin-top: 24px; /* 与 header 分离 */
+}
+
+.sidebar {
+  background: var(--card);
+  padding: 20px; /* 增大内边距 */
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border); /* 添加边框 */
+  transition: var(--transition);
+  position: sticky; /* 侧边栏固定 */
+  top: calc(70px + 14px); /* 考虑 header 高度 */
+  max-height: calc(100vh - 70px - 14px - 48px); /* 限制最大高度，防止超出视口 */
+  overflow-y: auto; /* 如果内容过多，允许滚动 */
+}
+
+.sidebar:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: static; /* 移动端取消固定定位 */
+    max-height: none; /* 移除高度限制 */
+    margin-top: 20px; /* 添加顶部边距 */
+  }
+}
+
+/* --- 主内容区域优化 --- */
+main.container {
+  padding-top: 32px; /* 与 header 分离 */
+  padding-bottom: 32px; /* 与 footer 分离 */
+}
